@@ -13,6 +13,7 @@ const programs = [
   { id: 'p8', title: 'قدرت و تحرک خانگی', cat: 'home', level: 'متوسط', weeks: 6, days: 4, price: 320000, oldPrice: 0, icon: '🤸', desc: 'تمرینات کالیستنیکس برای قدرت، انعطاف و کنترل بدن.' },
   { id: 'p9', title: 'پاورلیفتینگ مقدماتی', cat: 'strength', level: 'متوسط', weeks: 8, days: 4, price: 520000, oldPrice: 0, icon: '🦾', desc: 'آمادگی برای مسابقات با تمرکز بر اسکوات، بنچ و ددلیفت.' }
 ];
+
 const exercises = [
   { name: 'پرس سینه دمبل', m: 'chest', mName: 'سینه', level: 'متوسط', sets: '۴×۱۰', icon: '🏋️', desc: 'حرکت پایه برای توسعه عضله سینه و پشت‌بازو.', steps: ['روی نیمکت صاف دراز بکشید و دمبل‌ها را کنار سینه نگه دارید.', 'دمبل‌ها را با بازدم به بالا هل دهید.', 'با کنترل و دم، به حالت اولیه برگردید.'] },
   { name: 'پرس بالا سینه', m: 'chest', mName: 'سینه', level: 'متوسط', sets: '۳×۱۲', icon: '📐', desc: 'تمرکز بر بخش بالایی عضله سینه.', steps: ['نیمکت را روی زاویه ۳۰ تا ۴۵ درجه تنظیم کنید.', 'هالتر را تا میانه سینه پایین بیاورید.', 'با قدرت به بالا فشار دهید.'] },
@@ -39,13 +40,14 @@ const exercises = [
    اگر برای حرکتی img نذاری، همان ایموجی قبلی نشان داده می‌شود.
 ===================================================== */
 const exMedia = {
-  'پرس سینه دمبل': { img: 'img/exercises/dumbbell-bench-press.jpg', gif: 'img/exercises/dumbbell-bench-press.gif' },
-  'پرس بالا سینه': { img: 'img/exercises/incline-press.jpg' },   // برای گیف: gif: 'img/exercises/incline-press.gif'
-  'شنا سوئدی':     { img: 'img/exercises/push-up.jpg' }          // برای گیف: gif: 'img/exercises/push-up.gif'
+  // لینک مستقیم عکس/گیف را جایگزین کن (باید به .jpg / .png / .webp / .gif ختم شود)
+  'پرس سینه دمبل': { img: 'https://example.com/dumbbell-bench-press.jpg', gif: 'https://example.com/dumbbell-bench-press.gif' },
+  'پرس بالا سینه': { img: 'https://example.com/incline-press.jpg' },   // برای گیف: gif: 'https://...'
+  'شنا سوئدی':     { img: 'https://example.com/push-up.jpg' }          // برای گیف: gif: 'https://...'
 };
 exercises.forEach(e => Object.assign(e, exMedia[e.name] || {}));
 
-const exImg = e => `<img class="ex-img" src="${e.img}" alt="${e.name}" width="600" height="450" loading="lazy" decoding="async">`;
+const exImg = e => `<img class="ex-img" src="${e.img}" alt="${e.name}" width="600" height="450" loading="lazy" decoding="async" referrerpolicy="no-referrer">`;
 const playBadge = '<span class="xplay"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>GIF</span>';
 
 // اگر فایل عکس پیدا نشد، به‌جایش آیکون هالتر نشان بده
@@ -259,6 +261,7 @@ function loadGif(src, name) {
   if (!box || !gif) return;
   box.classList.add('loading');
   gifLoader = new Image();
+  gifLoader.referrerPolicy = 'no-referrer';
   gifLoader.onload = () => { gif.alt = name; gif.src = src; box.classList.remove('loading'); box.classList.add('ready'); };
   gifLoader.onerror = () => box.classList.remove('loading');
   gifLoader.src = src;
@@ -304,7 +307,7 @@ document.addEventListener('click', e => {
   } else if (t.dataset.ex) {
     const x = exercises[+t.dataset.ex];
     openModal(`
-      ${x.img ? `<div class="m-media" id="mMedia"><img class="ex-img m-poster" src="${x.img}" alt=""><img class="m-gif" id="mGif" alt=""><span class="m-spin"></span></div>` : `<div class="m-ico">${x.icon}</div>`}
+      ${x.img ? `<div class="m-media" id="mMedia"><img class="ex-img m-poster" src="${x.img}" alt="" referrerpolicy="no-referrer"><img class="m-gif" id="mGif" alt="" referrerpolicy="no-referrer"><span class="m-spin"></span></div>` : `<div class="m-ico">${x.icon}</div>`}
       <h3>${x.name}</h3>
       <div class="m-tags"><span>${x.mName}</span><span>${x.level}</span><span>پیشنهاد: ${x.sets}</span></div>
       <p>${x.desc}</p>
