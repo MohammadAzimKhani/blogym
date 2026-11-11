@@ -33,6 +33,31 @@ const exercises = [
   { name: 'بالا بردن پا آویزان', m: 'core', mName: 'شکم', level: 'پیشرفته', sets: '۳×۱۲', icon: '🪝', desc: 'حرکت پیشرفته برای شکم و فلکسور.', steps: ['از میله آویزان شوید.', 'پاها را تا راستای افقی بالا بیاورید.', 'بدون تاب‌خوردن پایین بیایید.'] }
 ];
 
+/* =====================================================
+   تصویر و گیف حرکات (حرکت‌به‌حرکت اضافه می‌شود)
+   img  = عکس ثابت کارت (سبک، فقط همین در صفحه لود می‌شود)
+   gif  = گیف حرکت (فقط وقتی روی کارت بزنی دانلود می‌شود)
+   اگر برای حرکتی img نذاری، همان ایموجی قبلی نشان داده می‌شود.
+===================================================== */
+const exMedia = {
+  'پرس سینه دمبل': { img: 'img/exercises/dumbbell-bench-press.jpg', gif: 'img/exercises/dumbbell-bench-press.gif' },
+  'پرس بالا سینه': { img: 'img/exercises/incline-press.jpg' },   // برای گیف: gif: 'img/exercises/incline-press.gif'
+  'شنا سوئدی':     { img: 'img/exercises/push-up.jpg' }          // برای گیف: gif: 'img/exercises/push-up.gif'
+};
+exercises.forEach(e => Object.assign(e, exMedia[e.name] || {}));
+
+const exImg = e => `<img class="ex-img" src="${e.img}" alt="${e.name}" width="600" height="450" loading="lazy" decoding="async">`;
+const playBadge = '<span class="xplay"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>GIF</span>';
+
+// اگر فایل عکس پیدا نشد، به‌جایش آیکون هالتر نشان بده
+document.addEventListener('error', ev => {
+  const t = ev.target;
+  if (t.tagName === 'IMG' && t.classList.contains('ex-img')) {
+    const box = t.closest('.xph, .e-ph, .m-media');
+    if (box) box.classList.add('noimg');
+  }
+}, true);
+
 const trainers = [
   { name: 'امیر رضایی', role: 'مربی بدنسازی', exp: 12, students: 850, letter: 'ا' },
   { name: 'نیلوفر کاظمی', role: 'تغذیه و چربی‌سوزی', exp: 8, students: 620, letter: 'ن' },
@@ -99,7 +124,7 @@ function renderExPreview() {
     const e = exercises[i];
     return `
     <article class="glass exercise" data-ex="${i}">
-      <div class="e-ico">${e.icon}</div>
+      ${e.img ? `<div class="e-ph">${exImg(e)}${e.gif ? playBadge : ''}</div>` : `<div class="e-ico">${e.icon}</div>`}
       <h4>${e.name}</h4>
       <div class="sub">${e.mName}</div>
       <div class="meta"><span>${e.level}</span><span>${e.sets}</span></div>
@@ -122,9 +147,11 @@ function renderExercises(animate = true) {
   grid.innerHTML = list.map((e, n) => {
     const i = exercises.indexOf(e);
     return `
-    <article class="xcard" data-ex="${i}" style="--d:${Math.min(n, 12)}">
-      <span class="xn">${i + 1 < 10 ? '۰' : ''}${num(i + 1)}</span>
-      <div class="xtop"><div class="xi">${e.icon}</div><span class="xm">${e.mName}</span></div>
+    <article class="xcard${e.img ? ' has-ph' : ''}" data-ex="${i}" style="--d:${Math.min(n, 12)}">
+      ${e.img
+        ? `<div class="xph">${exImg(e)}<span class="xm">${e.mName}</span>${e.gif ? playBadge : ''}</div>`
+        : `<span class="xn">${i + 1 < 10 ? '۰' : ''}${num(i + 1)}</span>
+      <div class="xtop"><div class="xi">${e.icon}</div><span class="xm">${e.mName}</span></div>`}
       <h4>${e.name}</h4>
       <p>${e.desc}</p>
       <div class="xfoot">
@@ -222,14 +249,34 @@ function openDrawer(open) {
 }
 
 /* ===================== مودال ===================== */
+let gifLoader = null;
+function cancelGif() {
+  if (gifLoader) { gifLoader.onload = gifLoader.onerror = null; gifLoader.src = ''; gifLoader = null; }
+}
+// گیف فقط همین‌جا و فقط بعد از کلیک دانلود می‌شود
+function loadGif(src, name) {
+  cancelGif();
+  const box = $('#mMedia'), gif = $('#mGif');
+  if (!box || !gif) return;
+  box.classList.add('loading');
+  gifLoader = new Image();
+  gifLoader.onload = () => { gif.alt = name; gif.src = src; box.classList.remove('loading'); box.classList.add('ready'); };
+  gifLoader.onerror = () => box.classList.remove('loading');
+  gifLoader.src = src;
+}
+
 function openModal(html) {
+  cancelGif();
   $('#modalContent').innerHTML = html;
   $('#modal').classList.add('show');
   $('#modal').setAttribute('aria-hidden', 'false');
 }
 function closeModal() {
+  cancelGif();
   $('#modal').classList.remove('show');
   $('#modal').setAttribute('aria-hidden', 'true');
+  // محتوا (و گیف) را از صفحه پاک کن تا حافظه آزاد شود
+  setTimeout(() => { if (!$('#modal').classList.contains('show')) $('#modalContent').innerHTML = ''; }, 450);
 }
 
 /* ===================== رویدادها ===================== */
@@ -258,11 +305,12 @@ document.addEventListener('click', e => {
   } else if (t.dataset.ex) {
     const x = exercises[+t.dataset.ex];
     openModal(`
-      <div class="m-ico">${x.icon}</div>
+      ${x.img ? `<div class="m-media" id="mMedia"><img class="ex-img m-poster" src="${x.img}" alt=""><img class="m-gif" id="mGif" alt=""><span class="m-spin"></span></div>` : `<div class="m-ico">${x.icon}</div>`}
       <h3>${x.name}</h3>
       <div class="m-tags"><span>${x.mName}</span><span>${x.level}</span><span>پیشنهاد: ${x.sets}</span></div>
       <p>${x.desc}</p>
       <ol class="m-steps">${x.steps.map(s => `<li>${s}</li>`).join('')}</ol>`);
+    if (x.img && x.gif) loadGif(x.gif, x.name);
   }
 });
 
