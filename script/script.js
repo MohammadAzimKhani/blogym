@@ -1,56 +1,65 @@
 /* =====================================================
-   داده‌ها (فعلاً ثابت هستند؛ بعداً با fetch از بک‌اند جایگزین کن)
-   مثال: const programs = await fetch('/api/programs').then(r => r.json());
+   DATA (static for now; replace with fetch from your backend later)
+   e.g. const programs = await fetch('/api/programs').then(r => r.json());
 ===================================================== */
 const programs = [
-  { id: 'p1', title: 'حجم‌دهی ۱۲ هفته‌ای', cat: 'mass', level: 'متوسط', weeks: 12, days: 5, price: 590000, oldPrice: 790000, icon: '💪', desc: 'برنامه ۵ روزه پوش/پول/لگ با تمرکز بر افزایش حجم عضلات و پیشرفت تدریجی وزنه.' },
-  { id: 'p2', title: 'چربی‌سوزی و فیتنس', cat: 'cut', level: 'مبتدی', weeks: 8, days: 4, price: 390000, oldPrice: 0, icon: '🔥', desc: 'ترکیب تمرینات مقاومتی و هوازی برای کاهش چربی با حفظ عضله.' },
-  { id: 'p3', title: 'قدرتی پیشرفته 5×5', cat: 'strength', level: 'پیشرفته', weeks: 10, days: 4, price: 650000, oldPrice: 850000, icon: '🏋️', desc: 'افزایش قدرت در حرکات پایه اسکوات، ددلیفت و پرس با پروگرس هفتگی.' },
-  { id: 'p4', title: 'شروع از صفر؛ ویژه مبتدی', cat: 'beginner', level: 'مبتدی', weeks: 6, days: 3, price: 250000, oldPrice: 0, icon: '🌱', desc: 'آموزش اصول اولیه و فرم صحیح حرکات با برنامه ۳ روزه فول‌بادی.' },
-  { id: 'p5', title: 'تمرین در خانه بدون وسیله', cat: 'home', level: 'مبتدی', weeks: 8, days: 4, price: 290000, oldPrice: 390000, icon: '🏠', desc: 'برنامه کامل با وزن بدن و کش مقاومتی؛ مناسب کسانی که به باشگاه دسترسی ندارند.' },
-  { id: 'p6', title: 'تقسیم بدن ۶ روزه PPL', cat: 'mass', level: 'پیشرفته', weeks: 12, days: 6, price: 690000, oldPrice: 0, icon: '⚡', desc: 'برنامه حرفه‌ای با حجم تمرین بالا برای ورزشکاران با سابقه.' },
-  { id: 'p7', title: 'خشک‌کردن ۶ هفته‌ای', cat: 'cut', level: 'متوسط', weeks: 6, days: 5, price: 450000, oldPrice: 550000, icon: '🎯', desc: 'برنامه تمرینی و هوازی شدت بالا برای رسیدن به بدن تعریف‌شده.' },
-  { id: 'p8', title: 'قدرت و تحرک خانگی', cat: 'home', level: 'متوسط', weeks: 6, days: 4, price: 320000, oldPrice: 0, icon: '🤸', desc: 'تمرینات کالیستنیکس برای قدرت، انعطاف و کنترل بدن.' },
-  { id: 'p9', title: 'پاورلیفتینگ مقدماتی', cat: 'strength', level: 'متوسط', weeks: 8, days: 4, price: 520000, oldPrice: 0, icon: '🦾', desc: 'آمادگی برای مسابقات با تمرکز بر اسکوات، بنچ و ددلیفت.' }
+  { id: 'p1', title: '12-Week Muscle Builder', cat: 'mass', level: 'Intermediate', weeks: 12, days: 5, icon: '💪', desc: 'A 5-day push/pull/legs split focused on building muscle size with steady weight progression.' },
+  { id: 'p2', title: 'Fat Loss & Fitness', cat: 'cut', level: 'Beginner', weeks: 8, days: 4, icon: '🔥', desc: 'A mix of resistance and cardio training to lose fat while keeping your muscle.' },
+  { id: 'p3', title: 'Advanced Strength 5×5', cat: 'strength', level: 'Advanced', weeks: 10, days: 4, icon: '🏋️', desc: 'Build strength in the big lifts — squat, deadlift and press — with weekly progression.' },
+  { id: 'p4', title: 'Start From Zero: Beginner', cat: 'beginner', level: 'Beginner', weeks: 6, days: 3, icon: '🌱', desc: 'Learn the basics and proper form with a 3-day full-body routine.' },
+  { id: 'p5', title: 'Home Workout, No Equipment', cat: 'home', level: 'Beginner', weeks: 8, days: 4, icon: '🏠', desc: 'A complete body-weight and resistance-band plan for anyone without gym access.' },
+  { id: 'p6', title: '6-Day PPL Split', cat: 'mass', level: 'Advanced', weeks: 12, days: 6, icon: '⚡', desc: 'A high-volume professional plan for athletes with training experience.' },
+  { id: 'p7', title: '6-Week Cutting Plan', cat: 'cut', level: 'Intermediate', weeks: 6, days: 5, icon: '🎯', desc: 'High-intensity training and cardio to get you lean and defined.' },
+  { id: 'p8', title: 'Home Strength & Mobility', cat: 'home', level: 'Intermediate', weeks: 6, days: 4, icon: '🤸', desc: 'Calisthenics for strength, flexibility and body control.' },
+  { id: 'p9', title: 'Intro to Powerlifting', cat: 'strength', level: 'Intermediate', weeks: 8, days: 4, icon: '🦾', desc: 'Get meet-ready with a focus on squat, bench and deadlift.' }
 ];
 
 const exercises = [
-  { name: 'پرس سینه دمبل', m: 'chest', mName: 'سینه', level: 'متوسط', sets: '۴×۱۰', icon: '🏋️', desc: 'حرکت پایه برای توسعه عضله سینه و پشت‌بازو.', steps: ['روی نیمکت صاف دراز بکشید و دمبل‌ها را کنار سینه نگه دارید.', 'دمبل‌ها را با بازدم به بالا هل دهید.', 'با کنترل و دم، به حالت اولیه برگردید.'] },
-  { name: 'پرس بالا سینه', m: 'chest', mName: 'سینه', level: 'متوسط', sets: '۳×۱۲', icon: '📐', desc: 'تمرکز بر بخش بالایی عضله سینه.', steps: ['نیمکت را روی زاویه ۳۰ تا ۴۵ درجه تنظیم کنید.', 'هالتر را تا میانه سینه پایین بیاورید.', 'با قدرت به بالا فشار دهید.'] },
-  { name: 'شنا سوئدی', m: 'chest', mName: 'سینه', level: 'مبتدی', sets: '۳×۱۵', icon: '🤲', desc: 'حرکت با وزن بدن که برای هر جایی مناسب است.', steps: ['دست‌ها را کمی بازتر از شانه روی زمین بگذارید.', 'بدن را صاف نگه دارید و پایین بیایید.', 'با فشار به حالت اول بازگردید.'] },
-  { name: 'بارفیکس', m: 'back', mName: 'پشت', level: 'پیشرفته', sets: '۴×۸', icon: '🧗', desc: 'بهترین حرکت برای پهنای پشت و قدرت کشش.', steps: ['میله را با دست‌های باز و کف رو به جلو بگیرید.', 'سینه را به سمت میله بالا بکشید.', 'با کنترل پایین بیایید.'] },
-  { name: 'روئینگ هالتر', m: 'back', mName: 'پشت', level: 'متوسط', sets: '۴×۱۰', icon: '🚣', desc: 'تقویت ضخامت پشت و عضلات میانی.', steps: ['با زانوی کمی خم و کمر صاف خم شوید.', 'هالتر را به سمت شکم بکشید.', 'تیغه‌های کتف را در بالا فشار دهید.'] },
-  { name: 'ددلیفت', m: 'back', mName: 'پشت', level: 'پیشرفته', sets: '۴×۶', icon: '⛓️', desc: 'حرکت ترکیبی برای قدرت کل بدن.', steps: ['پاها را به اندازه عرض لگن باز کنید.', 'هالتر را نزدیک ساق نگه دارید و با کمر صاف بلند کنید.', 'در بالا کامل بایستید و با کنترل پایین بیاورید.'] },
-  { name: 'اسکوات', m: 'legs', mName: 'پا', level: 'متوسط', sets: '۴×۱۰', icon: '🦵', desc: 'پادشاه حرکات پا؛ رشد چهارسر و باسن.', steps: ['هالتر را روی کتف قرار دهید و پاها را به عرض شانه باز کنید.', 'تا موازی شدن ران با زمین پایین بروید.', 'از پاشنه فشار داده و بایستید.'] },
-  { name: 'لانج', m: 'legs', mName: 'پا', level: 'مبتدی', sets: '۳×۱۲', icon: '🚶', desc: 'تقویت پا و تعادل با فشار کمتر روی کمر.', steps: ['یک قدم بزرگ به جلو بردارید.', 'زانوی عقب را تا نزدیک زمین پایین ببرید.', 'با پای جلو به حالت اول برگردید.'] },
-  { name: 'پرس پا', m: 'legs', mName: 'پا', level: 'مبتدی', sets: '۴×۱۲', icon: '🦿', desc: 'حرکت ماشینی ایمن برای حجم پا.', steps: ['پشت را به صندلی بچسبانید.', 'وزنه را تا زاویه ۹۰ درجه پایین بیاورید.', 'بدون قفل‌کردن زانو هل دهید.'] },
-  { name: 'پرس سرشانه', m: 'shoulder', mName: 'سرشانه', level: 'متوسط', sets: '۴×۱۰', icon: '🔝', desc: 'ساخت شانه‌های پهن و قوی.', steps: ['دمبل‌ها را کنار گوش‌ها نگه دارید.', 'به بالای سر هل دهید.', 'آرام پایین بیاورید.'] },
-  { name: 'نشر از جانب', m: 'shoulder', mName: 'سرشانه', level: 'مبتدی', sets: '۳×۱۵', icon: '🦅', desc: 'ایزوله سرشانه میانی برای پهنای بیشتر.', steps: ['دمبل سبک در دو دست بگیرید.', 'دست‌ها را تا راستای شانه بالا ببرید.', 'با کنترل پایین بیاورید.'] },
-  { name: 'جلو بازو هالتر', m: 'arms', mName: 'بازو', level: 'مبتدی', sets: '۳×۱۲', icon: '💪', desc: 'حرکت کلاسیک برای حجم جلو بازو.', steps: ['هالتر را با کف دست رو به بالا بگیرید.', 'آرنج‌ها را ثابت نگه دارید و بالا بیاورید.', 'آرام پایین بیایید.'] },
-  { name: 'پشت بازو سیم‌کش', m: 'arms', mName: 'بازو', level: 'مبتدی', sets: '۴×۱۵', icon: '🔗', desc: 'ایزوله پشت‌بازو با کشش ثابت.', steps: ['دسته را از بالا بگیرید و آرنج را به پهلو بچسبانید.', 'ساعد را کامل پایین بکشید.', 'با کنترل برگردید.'] },
-  { name: 'پلانک', m: 'core', mName: 'شکم', level: 'مبتدی', sets: '۳×۶۰ث', icon: '🧘', desc: 'تقویت عضلات مرکزی بدن و پایداری.', steps: ['روی آرنج‌ها و پنجه پا قرار بگیرید.', 'بدن را در یک خط صاف نگه دارید.', 'نفس منظم بکشید و حالت را حفظ کنید.'] },
-  { name: 'کرانچ معکوس', m: 'core', mName: 'شکم', level: 'متوسط', sets: '۳×۱۵', icon: '🌀', desc: 'تمرکز بر شکم پایین.', steps: ['به پشت دراز بکشید و زانوها را خم کنید.', 'لگن را از زمین بلند کنید.', 'آهسته پایین بیاورید.'] },
-  { name: 'بالا بردن پا آویزان', m: 'core', mName: 'شکم', level: 'پیشرفته', sets: '۳×۱۲', icon: '🪝', desc: 'حرکت پیشرفته برای شکم و فلکسور.', steps: ['از میله آویزان شوید.', 'پاها را تا راستای افقی بالا بیاورید.', 'بدون تاب‌خوردن پایین بیایید.'] }
+  { name: 'Dumbbell Bench Press', m: 'chest', mName: 'Chest', level: 'Intermediate', sets: '4×10', icon: '🏋️', desc: 'A foundational move for building the chest and triceps.', steps: ['Lie on a flat bench and hold the dumbbells beside your chest.', 'Press the dumbbells up as you exhale.', 'Lower them back under control as you inhale.'] },
+  { name: 'Incline Press', m: 'chest', mName: 'Chest', level: 'Intermediate', sets: '3×12', icon: '📐', desc: 'Targets the upper part of the chest.', steps: ['Set the bench to a 30–45° angle.', 'Lower the bar to the middle of your chest.', 'Press it back up with power.'] },
+  { name: 'Push-Up', m: 'chest', mName: 'Chest', level: 'Beginner', sets: '3×15', icon: '🤲', desc: 'A body-weight move you can do anywhere.', steps: ['Place your hands slightly wider than your shoulders.', 'Keep your body straight and lower down.', 'Push back up to the start.'] },
+  { name: 'Pull-Up', m: 'back', mName: 'Back', level: 'Advanced', sets: '4×8', icon: '🧗', desc: 'The best move for back width and pulling strength.', steps: ['Grip the bar wide with palms facing forward.', 'Pull your chest up toward the bar.', 'Lower yourself under control.'] },
+  { name: 'Barbell Row', m: 'back', mName: 'Back', level: 'Intermediate', sets: '4×10', icon: '🚣', desc: 'Builds back thickness and the mid-back muscles.', steps: ['Hinge forward with soft knees and a flat back.', 'Pull the bar toward your stomach.', 'Squeeze your shoulder blades together at the top.'] },
+  { name: 'Deadlift', m: 'back', mName: 'Back', level: 'Advanced', sets: '4×6', icon: '⛓️', desc: 'A compound lift for full-body strength.', steps: ['Set your feet about hip-width apart.', 'Keep the bar close to your shins and lift with a flat back.', 'Stand tall at the top and lower under control.'] },
+  { name: 'Squat', m: 'legs', mName: 'Legs', level: 'Intermediate', sets: '4×10', icon: '🦵', desc: 'The king of leg exercises — builds quads and glutes.', steps: ['Rest the bar on your upper back with feet shoulder-width apart.', 'Squat down until your thighs are parallel to the floor.', 'Drive through your heels to stand up.'] },
+  { name: 'Lunge', m: 'legs', mName: 'Legs', level: 'Beginner', sets: '3×12', icon: '🚶', desc: 'Builds leg strength and balance with less load on your lower back.', steps: ['Take a big step forward.', 'Lower your back knee close to the floor.', 'Push through the front leg to return to the start.'] },
+  { name: 'Leg Press', m: 'legs', mName: 'Legs', level: 'Beginner', sets: '4×12', icon: '🦿', desc: 'A safe machine move for building leg size.', steps: ['Press your back firmly against the seat.', 'Lower the platform until your knees reach 90°.', 'Press up without locking your knees.'] },
+  { name: 'Shoulder Press', m: 'shoulder', mName: 'Shoulders', level: 'Intermediate', sets: '4×10', icon: '🔝', desc: 'Builds wide, strong shoulders.', steps: ['Hold the dumbbells beside your ears.', 'Press them overhead.', 'Lower slowly back down.'] },
+  { name: 'Lateral Raise', m: 'shoulder', mName: 'Shoulders', level: 'Beginner', sets: '3×15', icon: '🦅', desc: 'Isolates the side delts for extra width.', steps: ['Hold a light dumbbell in each hand.', 'Raise your arms out to shoulder height.', 'Lower them under control.'] },
+  { name: 'Barbell Curl', m: 'arms', mName: 'Arms', level: 'Beginner', sets: '3×12', icon: '💪', desc: 'The classic move for biceps size.', steps: ['Hold the bar with palms facing up.', 'Keep your elbows still and curl the bar up.', 'Lower it slowly.'] },
+  { name: 'Cable Triceps Pushdown', m: 'arms', mName: 'Arms', level: 'Beginner', sets: '4×15', icon: '🔗', desc: 'Isolates the triceps with constant tension.', steps: ['Grip the handle from above and pin your elbows to your sides.', 'Push down until your arms are fully extended.', 'Return under control.'] },
+  { name: 'Plank', m: 'core', mName: 'Core', level: 'Beginner', sets: '3×60s', icon: '🧘', desc: 'Strengthens your core and builds stability.', steps: ['Get onto your forearms and toes.', 'Keep your body in one straight line.', 'Breathe steadily and hold the position.'] },
+  { name: 'Reverse Crunch', m: 'core', mName: 'Core', level: 'Intermediate', sets: '3×15', icon: '🌀', desc: 'Focuses on the lower abs.', steps: ['Lie on your back with knees bent.', 'Curl your hips up off the floor.', 'Lower slowly.'] },
+  { name: 'Hanging Leg Raise', m: 'core', mName: 'Core', level: 'Advanced', sets: '3×12', icon: '🪝', desc: 'An advanced move for the abs and hip flexors.', steps: ['Hang from a bar.', 'Raise your legs until they are level with your hips.', 'Lower without swinging.'] }
 ];
 
+const trainers = [
+  { name: 'Amir Rezaei', role: 'Bodybuilding coach', exp: 12, students: 850, letter: 'A' },
+  { name: 'Niloofar Kazemi', role: 'Nutrition & fat loss', exp: 8, students: 620, letter: 'N' },
+  { name: 'Pouya Salehi', role: 'Strength & powerlifting', exp: 10, students: 540, letter: 'P' },
+  { name: 'Mahsa Abbasi', role: 'Fitness & home training', exp: 6, students: 710, letter: 'M' }
+];
+
+const catNames = { mass: 'Muscle gain', cut: 'Fat loss', strength: 'Strength', beginner: 'Beginner', home: 'Home' };
+
 /* =====================================================
-   تصویر و گیف حرکات (حرکت‌به‌حرکت اضافه می‌شود)
-   img  = عکس ثابت کارت (سبک، فقط همین در صفحه لود می‌شود)
-   gif  = گیف حرکت (فقط وقتی روی کارت بزنی دانلود می‌شود)
-   اگر برای حرکتی img نذاری، همان ایموجی قبلی نشان داده می‌شود.
+   EXERCISE IMAGES & GIFs (added move by move)
+   img = still photo for the card (light, loads with the page)
+   gif = animated demo (downloads only when the card is clicked)
+   Use full direct links (ending in .jpg / .png / .webp / .gif).
+   If an exercise has no img, its emoji is shown instead.
 ===================================================== */
 const exMedia = {
-  // لینک مستقیم عکس/گیف را جایگزین کن (باید به .jpg / .png / .webp / .gif ختم شود)
-  'پرس سینه دمبل': { img: 'https://example.com/dumbbell-bench-press.jpg', gif: 'https://example.com/dumbbell-bench-press.gif' },
-  'پرس بالا سینه': { img: 'https://example.com/incline-press.jpg' },   // برای گیف: gif: 'https://...'
-  'شنا سوئدی':     { img: 'https://example.com/push-up.jpg' }          // برای گیف: gif: 'https://...'
+  'Dumbbell Bench Press': { img: 'https://example.com/dumbbell-bench-press.jpg', gif: 'https://example.com/dumbbell-bench-press.gif' },
+  'Incline Press':        { img: 'https://example.com/incline-press.jpg' },   // for a gif add: gif: 'https://...'
+  'Push-Up':              { img: 'https://example.com/push-up.jpg' }          // for a gif add: gif: 'https://...'
 };
 exercises.forEach(e => Object.assign(e, exMedia[e.name] || {}));
 
 const exImg = e => `<img class="ex-img" src="${e.img}" alt="${e.name}" width="600" height="450" loading="lazy" decoding="async" referrerpolicy="no-referrer">`;
 const playBadge = '<span class="xplay"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>GIF</span>';
 
-// اگر فایل عکس پیدا نشد، به‌جایش آیکون هالتر نشان بده
+// If an image fails to load, show a dumbbell icon instead
 document.addEventListener('error', ev => {
   const t = ev.target;
   if (t.tagName === 'IMG' && t.classList.contains('ex-img')) {
@@ -59,26 +68,10 @@ document.addEventListener('error', ev => {
   }
 }, true);
 
-const trainers = [
-  { name: 'امیر رضایی', role: 'مربی بدنسازی', exp: 12, students: 850, letter: 'ا' },
-  { name: 'نیلوفر کاظمی', role: 'تغذیه و چربی‌سوزی', exp: 8, students: 620, letter: 'ن' },
-  { name: 'پویا صالحی', role: 'قدرتی و پاورلیفتینگ', exp: 10, students: 540, letter: 'پ' },
-  { name: 'مهسا عباسی', role: 'فیتنس و تمرین خانگی', exp: 6, students: 710, letter: 'م' }
-];
-
-const plans = [
-  { id: 'pl1', name: 'ماهانه', price: 249000, per: 'برای ۱ ماه', desc: 'مناسب شروع و آشنایی', features: ['دسترسی به همه حرکات', '۱ برنامه تمرینی', 'پشتیبانی ایمیلی'], icon: '📅' },
-  { id: 'pl2', name: 'سه‌ماهه', price: 599000, per: 'برای ۳ ماه', desc: 'محبوب‌ترین انتخاب', features: ['دسترسی به همه حرکات', '۳ برنامه تمرینی', 'پشتیبانی مربی', 'پیگیری پیشرفت'], icon: '⭐', featured: true },
-  { id: 'pl3', name: 'ویژه سالانه', price: 1990000, per: 'برای ۱۲ ماه', desc: 'بیشترین صرفه‌جویی', features: ['برنامه‌های نامحدود', 'مشاوره اختصاصی مربی', 'برنامه غذایی', 'اولویت پشتیبانی'], icon: '👑' }
-];
-
-const catNames = { mass: 'حجم', cut: 'چربی‌سوزی', strength: 'قدرتی', beginner: 'مبتدی', home: 'خانگی' };
-
-/* ===================== ابزارها ===================== */
+/* ===================== Helpers ===================== */
 const $ = (s, p = document) => p.querySelector(s);
 const $$ = (s, p = document) => [...p.querySelectorAll(s)];
-const fmt = n => n.toLocaleString('fa-IR') + ' تومان';
-const num = n => n.toLocaleString('fa-IR');
+const num = n => n.toLocaleString('en-US');
 
 function toast(msg) {
   const t = $('#toast');
@@ -88,36 +81,28 @@ function toast(msg) {
   toast._t = setTimeout(() => t.classList.remove('show'), 2600);
 }
 
-/* ===================== رندر برنامه‌ها ===================== */
+/* ===================== Programs ===================== */
 function renderPrograms(cat = 'all') {
   const list = cat === 'all' ? programs : programs.filter(p => p.cat === cat);
-  $('#programGrid').innerHTML = list.map(p => {
-    const off = p.oldPrice ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
-    return `
+  $('#programGrid').innerHTML = list.map(p => `
     <article class="glass program reveal in">
       <div class="p-cover">
         <span class="lvl">${p.level}</span>
-        ${off ? `<span class="off">${num(off)}٪ تخفیف</span>` : ''}
         ${p.icon}
       </div>
       <div class="p-body">
         <h3>${p.title}</h3>
-        <div class="p-meta"><span>📆 ${num(p.weeks)} هفته</span><span>🗓️ ${num(p.days)} روز در هفته</span><span>🏷️ ${catNames[p.cat]}</span></div>
+        <div class="p-meta"><span>📆 ${num(p.weeks)} weeks</span><span>🗓️ ${num(p.days)} days/week</span><span>🏷️ ${catNames[p.cat]}</span></div>
         <p>${p.desc}</p>
         <div class="p-foot">
-          <div class="price"><b>${fmt(p.price)}</b>${p.oldPrice ? `<small>${num(p.oldPrice)}</small>` : ''}</div>
-          <div class="p-actions">
-            <button class="btn btn-ghost btn-sm" data-detail="${p.id}">جزئیات</button>
-            <button class="btn btn-primary btn-sm" data-add="${p.id}">خرید</button>
-          </div>
+          <button class="btn btn-ghost btn-sm" data-detail="${p.id}">View details</button>
         </div>
       </div>
-    </article>`;
-  }).join('');
+    </article>`).join('');
 }
 
-/* ===================== حرکات: پیش‌نمایش صفحه اصلی ===================== */
-// ایندکس حرکاتی که در صفحه اصلی نشان داده می‌شوند (سینه، پشت، پا، سرشانه)
+/* ===================== Exercises: homepage preview ===================== */
+// Indexes of the exercises shown on the homepage (chest, back, legs, shoulders)
 const previewIdx = [0, 3, 6, 9];
 
 function renderExPreview() {
@@ -133,15 +118,16 @@ function renderExPreview() {
   }).join('');
 }
 
-/* ===================== حرکات: صفحه تمام‌صفحه ===================== */
-const lvClass = { 'مبتدی': 'lv1', 'متوسط': 'lv2', 'پیشرفته': 'lv3' };
-const arrowLeft = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+/* ===================== Exercises: fullscreen library ===================== */
+const lvClass = { 'Beginner': 'lv1', 'Intermediate': 'lv2', 'Advanced': 'lv3' };
+const arrowRight = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
 let exMuscle = 'all', exQuery = '';
 function renderExercises(animate = true) {
+  const q = exQuery.toLowerCase();
   const list = exercises.filter(e =>
     (exMuscle === 'all' || e.m === exMuscle) &&
-    (!exQuery || e.name.includes(exQuery) || e.mName.includes(exQuery))
+    (!q || e.name.toLowerCase().includes(q) || e.mName.toLowerCase().includes(q))
   );
   const grid = $('#exFullGrid');
   grid.classList.toggle('noanim', !animate);
@@ -151,19 +137,19 @@ function renderExercises(animate = true) {
     <article class="xcard${e.img ? ' has-ph' : ''}" data-ex="${i}" style="--d:${Math.min(n, 12)}">
       ${e.img
         ? `<div class="xph">${exImg(e)}<span class="xm">${e.mName}</span>${e.gif ? playBadge : ''}</div>`
-        : `<span class="xn">${i + 1 < 10 ? '۰' : ''}${num(i + 1)}</span>
+        : `<span class="xn">${i + 1 < 10 ? '0' : ''}${i + 1}</span>
       <div class="xtop"><div class="xi">${e.icon}</div><span class="xm">${e.mName}</span></div>`}
       <h4>${e.name}</h4>
       <p>${e.desc}</p>
       <div class="xfoot">
         <span class="xlv ${lvClass[e.level]}"><i></i>${e.level}</span>
         <span class="xset">${e.sets}</span>
-        <span class="xgo">${arrowLeft}</span>
+        <span class="xgo">${arrowRight}</span>
       </div>
     </article>`;
   }).join('');
   $('#exEmpty').classList.toggle('hidden', list.length > 0);
-  $('#exCount').textContent = num(list.length) + ' حرکت';
+  $('#exCount').textContent = num(list.length) + (list.length === 1 ? ' exercise' : ' exercises');
 }
 
 function fillChipCounts() {
@@ -195,66 +181,21 @@ window.addEventListener('popstate', () => {
   if (exPage.classList.contains('open')) closeExPage(true);
 });
 
-/* ===================== مربیان و تعرفه ===================== */
+/* ===================== Coaches ===================== */
 $('#trainerGrid').innerHTML = trainers.map(t => `
   <article class="glass trainer reveal">
     <div class="t-photo">${t.letter}</div>
     <h4>${t.name}</h4>
     <div class="role">${t.role}</div>
-    <div class="info"><span>🎖️ ${num(t.exp)} سال سابقه</span><span>👥 ${num(t.students)} شاگرد</span></div>
+    <div class="info"><span>🎖️ ${num(t.exp)} years experience</span><span>👥 ${num(t.students)} athletes</span></div>
   </article>`).join('');
 
-$('#planGrid').innerHTML = plans.map(p => `
-  <article class="glass plan reveal ${p.featured ? 'featured' : ''}">
-    ${p.featured ? '<span class="ribbon">پیشنهاد ویژه</span>' : ''}
-    <h3>${p.name}</h3>
-    <div class="amount">${num(p.price)} <small>تومان</small></div>
-    <div class="desc">${p.per} · ${p.desc}</div>
-    <ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
-    <button class="btn ${p.featured ? 'btn-primary' : 'btn-ghost'} w100" data-plan="${p.id}">انتخاب اشتراک</button>
-  </article>`).join('');
-
-/* ===================== سبد خرید ===================== */
-let cart = [];
-try { cart = JSON.parse(localStorage.getItem('gf_cart')) || []; } catch (e) { cart = []; }
-
-function saveCart() { try { localStorage.setItem('gf_cart', JSON.stringify(cart)); } catch (e) {} }
-
-function renderCart() {
-  $$('.cart-badge').forEach(b => { b.textContent = num(cart.length); b.classList.toggle('hidden', !cart.length); });
-  const body = $('#cartItems');
-  if (!cart.length) {
-    body.innerHTML = `<div class="cart-empty"><span>🛒</span>سبد خرید شما خالی است</div>`;
-  } else {
-    body.innerHTML = cart.map(i => `
-      <div class="cart-item">
-        <div class="ci-ico">${i.icon}</div>
-        <div class="ci-info"><b>${i.title}</b><small>${fmt(i.price)}</small></div>
-        <button class="ci-del" data-del="${i.id}" aria-label="حذف">🗑</button>
-      </div>`).join('');
-  }
-  $('#cartTotal').textContent = fmt(cart.reduce((s, i) => s + i.price, 0));
-}
-
-function addToCart(item) {
-  if (cart.some(i => i.id === item.id)) return toast('این مورد قبلاً در سبد خرید است');
-  cart.push({ id: item.id, title: item.title, price: item.price, icon: item.icon });
-  saveCart(); renderCart();
-  toast('✅ به سبد خرید اضافه شد');
-}
-
-function openDrawer(open) {
-  $('#drawer').classList.toggle('open', open);
-  $('#overlay').classList.toggle('show', open);
-  $('#drawer').setAttribute('aria-hidden', String(!open));
-}
-
-/* ===================== مودال ===================== */
+/* ===================== Modal ===================== */
 let gifLoader = null;
 function cancelGif() {
   if (gifLoader) { gifLoader.onload = gifLoader.onerror = null; gifLoader.src = ''; gifLoader = null; }
 }
-// گیف فقط همین‌جا و فقط بعد از کلیک دانلود می‌شود
+// The GIF is only downloaded here, and only after a click
 function loadGif(src, name) {
   cancelGif();
   const box = $('#mMedia'), gif = $('#mGif');
@@ -277,63 +218,49 @@ function closeModal() {
   cancelGif();
   $('#modal').classList.remove('show');
   $('#modal').setAttribute('aria-hidden', 'true');
-  // محتوا (و گیف) را از صفحه پاک کن تا حافظه آزاد شود
+  // Clear the content (and the GIF) so memory is freed
   setTimeout(() => { if (!$('#modal').classList.contains('show')) $('#modalContent').innerHTML = ''; }, 450);
 }
 
-/* ===================== رویدادها ===================== */
+/* ===================== Events ===================== */
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-add],[data-detail],[data-ex],[data-del],[data-plan]');
+  const t = e.target.closest('[data-detail],[data-ex],[data-goto]');
   if (!t) return;
 
-  if (t.dataset.add) {
-    addToCart(programs.find(p => p.id === t.dataset.add));
-  } else if (t.dataset.plan) {
-    const p = plans.find(x => x.id === t.dataset.plan);
-    addToCart({ id: p.id, title: 'اشتراک ' + p.name, price: p.price, icon: p.icon });
-    openDrawer(true);
-  } else if (t.dataset.del) {
-    cart = cart.filter(i => i.id !== t.dataset.del);
-    saveCart(); renderCart();
+  if (t.dataset.goto) {
+    closeModal();
+    const target = $(t.dataset.goto);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
   } else if (t.dataset.detail) {
     const p = programs.find(x => x.id === t.dataset.detail);
     openModal(`
       <div class="m-ico">${p.icon}</div>
       <h3>${p.title}</h3>
-      <div class="m-tags"><span>${p.level}</span><span>${num(p.weeks)} هفته</span><span>${num(p.days)} روز در هفته</span><span>${catNames[p.cat]}</span></div>
+      <div class="m-tags"><span>${p.level}</span><span>${num(p.weeks)} weeks</span><span>${num(p.days)} days/week</span><span>${catNames[p.cat]}</span></div>
       <p>${p.desc}</p>
-      <ol class="m-steps"><li>دریافت فایل PDF برنامه بعد از پرداخت</li><li>آموزش تصویری همه حرکات</li><li>پشتیبانی مربی در طول دوره</li></ol>
-      <button class="btn btn-primary w100" data-add="${p.id}">افزودن به سبد · ${fmt(p.price)}</button>`);
+      <ol class="m-steps"><li>A weekly split with sets, reps and rest times</li><li>Illustrated guides for every exercise</li><li>Progression tips from week to week</li></ol>
+      <button class="btn btn-primary w100" data-goto="#exercises">Browse exercises</button>`);
   } else if (t.dataset.ex) {
     const x = exercises[+t.dataset.ex];
     openModal(`
       ${x.img ? `<div class="m-media" id="mMedia"><img class="ex-img m-poster" src="${x.img}" alt="" referrerpolicy="no-referrer"><img class="m-gif" id="mGif" alt="" referrerpolicy="no-referrer"><span class="m-spin"></span></div>` : `<div class="m-ico">${x.icon}</div>`}
       <h3>${x.name}</h3>
-      <div class="m-tags"><span>${x.mName}</span><span>${x.level}</span><span>پیشنهاد: ${x.sets}</span></div>
+      <div class="m-tags"><span>${x.mName}</span><span>${x.level}</span><span>Suggested: ${x.sets}</span></div>
       <p>${x.desc}</p>
       <ol class="m-steps">${x.steps.map(s => `<li>${s}</li>`).join('')}</ol>`);
     if (x.img && x.gif) loadGif(x.gif, x.name);
   }
 });
 
-$('#cartBtn').addEventListener('click', () => openDrawer(true));
-$('#closeCart').addEventListener('click', () => openDrawer(false));
-$('#overlay').addEventListener('click', () => openDrawer(false));
 $('#closeModal').addEventListener('click', closeModal);
 $('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
 
-/* Escape: اول مودال، بعد سبد، بعد صفحه حرکات، بعد منوی موبایل */
+/* Escape: modal first, then the exercise library, then the mobile menu */
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
   if ($('#modal').classList.contains('show')) return closeModal();
-  if ($('#drawer').classList.contains('open')) return openDrawer(false);
   if (exPage.classList.contains('open')) return closeExPage();
   toggleMenu(false);
-});
-
-$('#checkoutBtn').addEventListener('click', () => {
-  if (!cart.length) return toast('سبد خرید خالی است');
-  toast('درگاه پرداخت بعد از اتصال بک‌اند فعال می‌شود');
 });
 
 $('#programChips').addEventListener('click', e => {
@@ -343,7 +270,7 @@ $('#programChips').addEventListener('click', e => {
   renderPrograms(c.dataset.cat);
 });
 
-/* ===== صفحه تمام‌صفحه حرکات ===== */
+/* ===== Exercise library page ===== */
 $('#exOpenSearch').addEventListener('click', () => openExPage(true));
 $('#exMore').addEventListener('click', () => openExPage(false));
 $('#exBack').addEventListener('click', () => closeExPage());
@@ -365,10 +292,10 @@ $('#exClear').addEventListener('click', () => {
 
 $('#newsletter').addEventListener('submit', e => {
   e.preventDefault(); e.target.reset();
-  toast('📩 نمونه برنامه برای شما ارسال می‌شود');
+  toast('📩 Thanks! You\u2019re on the list.');
 });
 
-/* ===== منوی کشویی موبایل ===== */
+/* ===== Mobile drawer menu ===== */
 const mMenu = $('#mMenu'), mOverlay = $('#mOverlay');
 function toggleMenu(open) {
   mMenu.classList.toggle('open', open);
@@ -380,9 +307,8 @@ $('#menuBtn').addEventListener('click', () => toggleMenu(true));
 $('#mmClose').addEventListener('click', () => toggleMenu(false));
 mOverlay.addEventListener('click', () => toggleMenu(false));
 $$('#mMenu a[href^="#"]').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
-$('#dockCart').addEventListener('click', () => openDrawer(true));
 
-/* ===== منوی دسکتاپ: قرص کشویی که دنبال موس می‌رود ===== */
+/* ===== Desktop menu: sliding pill that follows the mouse ===== */
 const pill = $('#navPill');
 const linkEls = $$('#navLinks a');
 let activeLink = null;
@@ -400,10 +326,10 @@ linkEls.forEach(a => {
 });
 $('#navLinks').addEventListener('mouseleave', () => movePill(activeLink));
 
-/* ===== نوار پایین موبایل ===== */
+/* ===== Mobile bottom dock ===== */
 const dockItems = $$('.dock-i[data-sec]');
 const dockPill = $('#dockPill');
-const dockMap = { home: 'home', features: 'home', programs: 'programs', exercises: 'exercises', trainers: 'exercises', pricing: 'pricing', reviews: 'pricing', faq: 'pricing' };
+const dockMap = { home: 'home', features: 'home', programs: 'programs', exercises: 'exercises', trainers: 'trainers', reviews: 'trainers', faq: 'trainers' };
 function moveDock(el) {
   if (!el || !el.offsetWidth) { dockPill.style.opacity = 0; return; }
   dockPill.style.opacity = 1;
@@ -411,7 +337,7 @@ function moveDock(el) {
   dockPill.style.width = el.offsetWidth + 'px';
 }
 
-/* ===== بخش فعال در اسکرول ===== */
+/* ===== Active section on scroll ===== */
 const sections = $$('main section[id]');
 let curId = '';
 function setActive(id) {
@@ -447,7 +373,7 @@ window.addEventListener('resize', () => setActive(curId || 'home'));
 window.addEventListener('load', () => { curId = ''; onScroll(); });
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setActive(curId || 'home'));
 
-/* ===== درخشش کارت‌ها دنبال موس ===== */
+/* ===== Card glow that follows the mouse ===== */
 let pmFrame = 0, pmEv = null;
 document.addEventListener('pointermove', e => {
   if (e.pointerType !== 'mouse') return;
@@ -455,7 +381,7 @@ document.addEventListener('pointermove', e => {
   if (pmFrame) return;
   pmFrame = requestAnimationFrame(() => {
     pmFrame = 0;
-    const c = pmEv.target.closest('.feature,.program,.exercise,.xcard,.trainer,.plan,.review,.main-card');
+    const c = pmEv.target.closest('.feature,.program,.exercise,.xcard,.trainer,.review,.main-card');
     if (!c) return;
     const r = c.getBoundingClientRect();
     c.style.setProperty('--mx', (pmEv.clientX - r.left) + 'px');
@@ -463,13 +389,13 @@ document.addEventListener('pointermove', e => {
   });
 }, { passive: true });
 
-/* ظاهر شدن با اسکرول */
+/* Reveal on scroll */
 const io = new IntersectionObserver(entries => {
   entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
 }, { threshold: .12 });
 function observeReveals() { $$('.reveal:not(.in)').forEach(el => io.observe(el)); }
 
-/* شمارنده آمار */
+/* Stats counter */
 const counterIO = new IntersectionObserver(entries => {
   entries.forEach(en => {
     if (!en.isIntersecting) return;
@@ -485,11 +411,10 @@ const counterIO = new IntersectionObserver(entries => {
 }, { threshold: .6 });
 $$('[data-count]').forEach(el => counterIO.observe(el));
 
-/* شروع */
+/* Init */
 renderPrograms();
 renderExPreview();
 renderExercises();
 fillChipCounts();
-renderCart();
 observeReveals();
 onScroll();
