@@ -13,7 +13,6 @@
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --ease: cubic-bezier(.22, 1, .36, 1);
   --spring: cubic-bezier(.3, 1.35, .5, 1);
-
   --glass: linear-gradient(145deg, rgba(92, 184, 255, .18), rgba(27, 153, 255, .07) 50%, rgba(14, 100, 190, .16)), rgba(10, 18, 34, .78);
   --glass-solid: linear-gradient(145deg, rgba(92, 184, 255, .2), rgba(27, 153, 255, .08) 50%, rgba(14, 100, 190, .18)), rgba(7, 14, 28, .95);
   --glass-light: linear-gradient(145deg, rgba(92, 184, 255, .22), rgba(27, 153, 255, .1)), rgba(12, 23, 42, .6);
