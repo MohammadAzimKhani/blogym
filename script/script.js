@@ -90,15 +90,13 @@ function renderPrograms(cat = 'all') {
   }).join('');
 }
 
-/* ===================== رندر حرکات ===================== */
-let exMuscle = 'all', exQuery = '';
-function renderExercises() {
-  const list = exercises.filter(e =>
-    (exMuscle === 'all' || e.m === exMuscle) &&
-    (!exQuery || e.name.includes(exQuery) || e.mName.includes(exQuery))
-  );
-  $('#exGrid').innerHTML = list.map(e => {
-    const i = exercises.indexOf(e);
+/* ===================== حرکات: پیش‌نمایش صفحه اصلی ===================== */
+// ایندکس حرکاتی که در صفحه اصلی نشان داده می‌شوند (سینه، پشت، پا، سرشانه)
+const previewIdx = [0, 3, 6, 9];
+
+function renderExPreview() {
+  $('#exGrid').innerHTML = previewIdx.map(i => {
+    const e = exercises[i];
     return `
     <article class="glass exercise" data-ex="${i}">
       <div class="e-ico">${e.icon}</div>
@@ -107,8 +105,67 @@ function renderExercises() {
       <div class="meta"><span>${e.level}</span><span>${e.sets}</span></div>
     </article>`;
   }).join('');
-  $('#exEmpty').classList.toggle('hidden', list.length > 0);
 }
+
+/* ===================== حرکات: صفحه تمام‌صفحه ===================== */
+const lvClass = { 'مبتدی': 'lv1', 'متوسط': 'lv2', 'پیشرفته': 'lv3' };
+const arrowLeft = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+
+let exMuscle = 'all', exQuery = '';
+function renderExercises(animate = true) {
+  const list = exercises.filter(e =>
+    (exMuscle === 'all' || e.m === exMuscle) &&
+    (!exQuery || e.name.includes(exQuery) || e.mName.includes(exQuery))
+  );
+  const grid = $('#exFullGrid');
+  grid.classList.toggle('noanim', !animate);
+  grid.innerHTML = list.map((e, n) => {
+    const i = exercises.indexOf(e);
+    return `
+    <article class="xcard" data-ex="${i}" style="--d:${Math.min(n, 12)}">
+      <span class="xn">${i + 1 < 10 ? '۰' : ''}${num(i + 1)}</span>
+      <div class="xtop"><div class="xi">${e.icon}</div><span class="xm">${e.mName}</span></div>
+      <h4>${e.name}</h4>
+      <p>${e.desc}</p>
+      <div class="xfoot">
+        <span class="xlv ${lvClass[e.level]}"><i></i>${e.level}</span>
+        <span class="xset">${e.sets}</span>
+        <span class="xgo">${arrowLeft}</span>
+      </div>
+    </article>`;
+  }).join('');
+  $('#exEmpty').classList.toggle('hidden', list.length > 0);
+  $('#exCount').textContent = num(list.length) + ' حرکت';
+}
+
+function fillChipCounts() {
+  $$('#exChips .chip').forEach(c => {
+    const m = c.dataset.m;
+    const n = m === 'all' ? exercises.length : exercises.filter(e => e.m === m).length;
+    const em = $('em', c);
+    if (em) em.textContent = num(n);
+  });
+}
+
+const exPage = $('#exPage');
+function openExPage(focusSearch = false) {
+  renderExercises(true);
+  exPage.scrollTop = 0;
+  exPage.classList.add('open');
+  exPage.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('lock');
+  if (!(history.state && history.state.ex)) history.pushState({ ex: 1 }, '');
+  if (focusSearch) setTimeout(() => $('#exSearch').focus(), 450);
+}
+function closeExPage(fromPop = false) {
+  exPage.classList.remove('open');
+  exPage.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('lock');
+  if (!fromPop && history.state && history.state.ex) history.back();
+}
+window.addEventListener('popstate', () => {
+  if (exPage.classList.contains('open')) closeExPage(true);
+});
 
 /* ===================== مربیان و تعرفه ===================== */
 $('#trainerGrid').innerHTML = trainers.map(t => `
@@ -214,7 +271,15 @@ $('#closeCart').addEventListener('click', () => openDrawer(false));
 $('#overlay').addEventListener('click', () => openDrawer(false));
 $('#closeModal').addEventListener('click', closeModal);
 $('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); openDrawer(false); } });
+
+/* Escape: اول مودال، بعد سبد، بعد صفحه حرکات، بعد منوی موبایل */
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if ($('#modal').classList.contains('show')) return closeModal();
+  if ($('#drawer').classList.contains('open')) return openDrawer(false);
+  if (exPage.classList.contains('open')) return closeExPage();
+  toggleMenu(false);
+});
 
 $('#checkoutBtn').addEventListener('click', () => {
   if (!cart.length) return toast('سبد خرید خالی است');
@@ -228,14 +293,25 @@ $('#programChips').addEventListener('click', e => {
   renderPrograms(c.dataset.cat);
 });
 
+/* ===== صفحه تمام‌صفحه حرکات ===== */
+$('#exOpenSearch').addEventListener('click', () => openExPage(true));
+$('#exMore').addEventListener('click', () => openExPage(false));
+$('#exBack').addEventListener('click', () => closeExPage());
+
 $('#exChips').addEventListener('click', e => {
   const c = e.target.closest('.chip'); if (!c) return;
   $$('#exChips .chip').forEach(x => x.classList.remove('active'));
   c.classList.add('active');
-  exMuscle = c.dataset.m; renderExercises();
+  exMuscle = c.dataset.m;
+  renderExercises(true);
 });
 
-$('#exSearch').addEventListener('input', e => { exQuery = e.target.value.trim(); renderExercises(); });
+$('#exSearch').addEventListener('input', e => { exQuery = e.target.value.trim(); renderExercises(false); });
+$('#exClear').addEventListener('click', () => {
+  $('#exSearch').value = ''; exQuery = '';
+  renderExercises(false);
+  $('#exSearch').focus();
+});
 
 $('#newsletter').addEventListener('submit', e => {
   e.preventDefault(); e.target.reset();
@@ -254,7 +330,6 @@ $('#menuBtn').addEventListener('click', () => toggleMenu(true));
 $('#mmClose').addEventListener('click', () => toggleMenu(false));
 mOverlay.addEventListener('click', () => toggleMenu(false));
 $$('#mMenu a[href^="#"]').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
-document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
 $('#dockCart').addEventListener('click', () => openDrawer(true));
 
 /* ===== منوی دسکتاپ: قرص کشویی که دنبال موس می‌رود ===== */
@@ -330,7 +405,7 @@ document.addEventListener('pointermove', e => {
   if (pmFrame) return;
   pmFrame = requestAnimationFrame(() => {
     pmFrame = 0;
-    const c = pmEv.target.closest('.feature,.program,.exercise,.trainer,.plan,.review,.main-card');
+    const c = pmEv.target.closest('.feature,.program,.exercise,.xcard,.trainer,.plan,.review,.main-card');
     if (!c) return;
     const r = c.getBoundingClientRect();
     c.style.setProperty('--mx', (pmEv.clientX - r.left) + 'px');
@@ -362,7 +437,9 @@ $$('[data-count]').forEach(el => counterIO.observe(el));
 
 /* شروع */
 renderPrograms();
+renderExPreview();
 renderExercises();
+fillChipCounts();
 renderCart();
 observeReveals();
 onScroll();
