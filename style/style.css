@@ -14,7 +14,6 @@
   --font-body: 'Vazirmatn', Tahoma, sans-serif;
   --ease: cubic-bezier(.22, 1, .36, 1);
   --spring: cubic-bezier(.3, 1.35, .5, 1);
-
   /* شیشه رنگی (بدون blur) */
   --glass: linear-gradient(145deg, rgba(155, 189, 136, .18), rgba(106, 133, 90, .07) 50%, rgba(77, 99, 66, .16)), rgba(17, 27, 19, .78);
   --glass-solid: linear-gradient(145deg, rgba(155, 189, 136, .2), rgba(106, 133, 90, .08) 50%, rgba(77, 99, 66, .18)), rgba(13, 21, 15, .95);
