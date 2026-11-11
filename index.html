@@ -1,58 +1,54 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#060b14">
-  <title>سورنا جیم | برنامه تمرینی و آموزش حرکات بدنسازی</title>
-  <meta name="description" content="سورنا جیم (sorenagym)؛ خرید برنامه تمرینی اختصاصی، آموزش حرکات بدنسازی و همراهی مربیان حرفه‌ای">
+  <title>BLOGYM | Workout Programs &amp; Exercise Guides</title>
+  <meta name="description" content="BLOGYM — workout programs, step-by-step exercise guides and support from professional coaches.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style/style.css">
 </head>
 <body>
-  
+
   <div class="scroll-bar" id="scrollBar"></div>
-  <!-- پس‌زمینه شناور -->
+
+  <!-- Background -->
   <div class="bg" aria-hidden="true">
     <span class="blob b1"></span>
     <span class="blob b2"></span>
     <span class="blob b3"></span>
   </div>
 
-  <!-- هدر -->
+  <!-- Header -->
   <header class="header" id="header">
     <nav class="nav glass container">
-      <a href="#home" class="logo" aria-label="سورنا جیم">
+      <a href="#home" class="logo" aria-label="BLOGYM">
         <span class="logo-mark">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg>
         </span>
-        <span class="logo-txt"><b>سورنا<i> جیم</i></b><small>sorenagym</small></span>
+        <span class="logo-txt"><b>BLO<i>GYM</i></b><small>blogym</small></span>
       </a>
 
       <ul class="nav-links" id="navLinks">
         <span class="nav-pill" id="navPill"></span>
-        <li><a href="#home">خانه</a></li>
-        <li><a href="#programs">برنامه‌های تمرینی</a></li>
-        <li><a href="#exercises">آموزش حرکات</a></li>
-        <li><a href="#trainers">مربیان</a></li>
-        <li><a href="#pricing">اشتراک‌ها</a></li>
-        <li><a href="#faq">پرسش‌ها</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#exercises">Exercises</a></li>
+        <li><a href="#trainers">Coaches</a></li>
+        <li><a href="#faq">FAQ</a></li>
       </ul>
 
       <div class="nav-actions">
-        <button class="icon-btn" id="cartBtn" aria-label="سبد خرید">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
-          <span class="badge cart-badge hidden" id="cartCount">0</span>
-        </button>
-        <a href="#" class="btn btn-ghost btn-sm hide-sm">ورود | ثبت‌نام</a>
-        <button class="menu-btn" id="menuBtn" aria-label="باز کردن منو"><span></span><span></span></button>
+        <a href="#" class="btn btn-ghost btn-sm hide-sm">Sign in</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span></span><span></span></button>
       </div>
     </nav>
   </header>
 
-  <!-- منوی کشویی موبایل -->
+  <!-- Mobile drawer menu -->
   <div class="m-overlay" id="mOverlay"></div>
   <aside class="m-menu" id="mMenu" aria-hidden="true">
     <span class="mm-glow"></span>
@@ -61,245 +57,227 @@
         <span class="logo-mark">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg>
         </span>
-        <span class="logo-txt"><b>سورنا<i> جیم</i></b><small>sorenagym</small></span>
+        <span class="logo-txt"><b>BLO<i>GYM</i></b><small>blogym</small></span>
       </a>
-      <button class="mm-close" id="mmClose" aria-label="بستن منو">
+      <button class="mm-close" id="mmClose" aria-label="Close menu">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
 
     <nav class="mm-links">
-      <a href="#home" style="--i:0"><span class="mm-num">۰۱</span><span class="mm-txt"><b>خانه</b><small>شروع مسیر</small></span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
-      <a href="#programs" style="--i:1"><span class="mm-num">۰۲</span><span class="mm-txt"><b>برنامه‌های تمرینی</b><small>حجم، قدرت، چربی‌سوزی</small></span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
-      <a href="#exercises" style="--i:2"><span class="mm-num">۰۳</span><span class="mm-txt"><b>آموزش حرکات</b><small>اجرای صحیح هر حرکت</small></span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
-      <a href="#trainers" style="--i:3"><span class="mm-num">۰۴</span><span class="mm-txt"><b>مربیان</b><small>با تیم ما آشنا شو</small></span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
-      <a href="#pricing" style="--i:4"><span class="mm-num">۰۵</span><span class="mm-txt"><b>اشتراک‌ها</b><small>پلن‌های ویژه</small></span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
-      <a href="#faq" style="--i:5"><span class="mm-num">۰۶</span><span class="mm-txt"><b>پرسش‌های متداول</b><small>پاسخ سؤال‌های شما</small></span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
+      <a href="#home" style="--i:0"><span class="mm-num">01</span><span class="mm-txt"><b>Home</b><small>Start your journey</small></span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a>
+      <a href="#programs" style="--i:1"><span class="mm-num">02</span><span class="mm-txt"><b>Programs</b><small>Mass, strength, fat loss</small></span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a>
+      <a href="#exercises" style="--i:2"><span class="mm-num">03</span><span class="mm-txt"><b>Exercises</b><small>Proper form for every move</small></span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a>
+      <a href="#trainers" style="--i:3"><span class="mm-num">04</span><span class="mm-txt"><b>Coaches</b><small>Meet the team</small></span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a>
+      <a href="#faq" style="--i:4"><span class="mm-num">05</span><span class="mm-txt"><b>FAQ</b><small>Answers to your questions</small></span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a>
     </nav>
 
     <div class="mm-foot">
-      <a href="#" class="btn btn-primary w100">ورود | ثبت‌نام</a>
+      <a href="#" class="btn btn-primary w100">Sign in</a>
       <div class="mm-social">
-        <a href="#">اینستاگرام</a>
-        <a href="#">تلگرام</a>
-        <a href="#">واتساپ</a>
+        <a href="#">Instagram</a>
+        <a href="#">Telegram</a>
+        <a href="#">WhatsApp</a>
       </div>
-      <small class="mm-brand">sorenagym</small>
+      <small class="mm-brand">blogym</small>
     </div>
   </aside>
 
-  <!-- نوار پایین موبایل -->
-  <nav class="dock glass" id="dock" aria-label="دسترسی سریع">
+  <!-- Mobile bottom dock -->
+  <nav class="dock glass" id="dock" aria-label="Quick navigation">
     <span class="dock-pill" id="dockPill"></span>
     <a href="#home" class="dock-i active" data-sec="home">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>خانه</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Home</span>
     </a>
     <a href="#programs" class="dock-i" data-sec="programs">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM9 12h6M9 16h4"/></svg><span>برنامه‌ها</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM9 12h6M9 16h4"/></svg><span>Programs</span>
     </a>
     <a href="#exercises" class="dock-i" data-sec="exercises">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg><span>حرکات</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg><span>Exercises</span>
     </a>
-    <a href="#pricing" class="dock-i" data-sec="pricing">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 5-7 5 7 4-4-2 11H5z"/></svg><span>اشتراک</span>
+    <a href="#trainers" class="dock-i" data-sec="trainers">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Coaches</span>
     </a>
-    <button class="dock-i" id="dockCart" aria-label="سبد خرید">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span>سبد</span>
-      <em class="badge cart-badge hidden">0</em>
-    </button>
   </nav>
 
   <main>
     <!-- Hero -->
     <section class="hero container" id="home">
       <div class="hero-text reveal">
-        <span class="pill"><i class="dot"></i> بیش از ۱۲٬۰۰۰ ورزشکار با ما تمرین می‌کنند</span>
-        <h1>بدنی که می‌خواهی، <em>با برنامه‌ای که برای خودت ساخته شده</em></h1>
-        <p>برنامه‌های تمرینی اختصاصی، آموزش تصویری حرکات و همراهی مربیان حرفه‌ای؛ همه در سورنا جیم. از هر سطحی شروع کن، مسیر را ما نشانت می‌دهیم.</p>
+        <span class="pill"><i class="dot"></i> Over 12,000 athletes train with us</span>
+        <h1>The body you want, <em>with a plan built for you</em></h1>
+        <p>Tailored workout programs, illustrated exercise guides and support from professional coaches — all in BLOGYM. Start at any level, we'll show you the way.</p>
         <div class="hero-cta">
-          <a href="#programs" class="btn btn-primary">مشاهده برنامه‌ها</a>
+          <a href="#programs" class="btn btn-primary">Browse programs</a>
           <a href="#exercises" class="btn btn-ghost">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            آموزش حرکات
+            Exercise guides
           </a>
         </div>
         <div class="hero-trust">
-          <div class="avatars"><span>م</span><span>ن</span><span>ع</span><span>س</span></div>
-          <small>رضایت <b>۹۸٪</b> از شاگردان</small>
+          <div class="avatars"><span>M</span><span>N</span><span>A</span><span>S</span></div>
+          <small><b>98%</b> of members are satisfied</small>
         </div>
       </div>
 
       <div class="hero-visual reveal">
         <div class="glass hero-card main-card">
           <div class="hc-head">
-            <span>برنامه امروز</span>
-            <span class="tag">روز ۳ از ۵</span>
+            <span>Today's plan</span>
+            <span class="tag">Day 3 of 5</span>
           </div>
-          <h3>سینه و پشت‌بازو</h3>
+          <h3>Chest &amp; Triceps</h3>
           <ul class="mini-list">
-            <li><span>پرس سینه دمبل</span><b>۴×۱۰</b></li>
-            <li><span>پرس بالا سینه</span><b>۳×۱۲</b></li>
-            <li><span>دیپ پارالل</span><b>۳×۸</b></li>
-            <li><span>پشت‌بازو سیم‌کش</span><b>۴×۱۵</b></li>
+            <li><span>Dumbbell Bench Press</span><b>4×10</b></li>
+            <li><span>Incline Press</span><b>3×12</b></li>
+            <li><span>Parallel Bar Dips</span><b>3×8</b></li>
+            <li><span>Cable Triceps Pushdown</span><b>4×15</b></li>
           </ul>
           <div class="progress"><i style="--w:68%"></i></div>
-          <small class="muted">۶۸٪ از برنامه این هفته انجام شده</small>
+          <small class="muted">68% of this week's plan completed</small>
         </div>
-
-        
       </div>
     </section>
 
-   
-
-    <!-- آمار -->
+    <!-- Stats -->
     <section class="container stats reveal">
       <div class="glass stats-wrap">
-        <div class="stat"><b data-count="12000">0</b><span>ورزشکار فعال</span></div>
-        <div class="stat"><b data-count="150">0</b><span>برنامه تمرینی</span></div>
-        <div class="stat"><b data-count="400">0</b><span>حرکت آموزشی</span></div>
-        <div class="stat"><b data-count="25">0</b><span>مربی حرفه‌ای</span></div>
+        <div class="stat"><b data-count="12000">0</b><span>Active athletes</span></div>
+        <div class="stat"><b data-count="150">0</b><span>Training programs</span></div>
+        <div class="stat"><b data-count="400">0</b><span>Exercise guides</span></div>
+        <div class="stat"><b data-count="25">0</b><span>Pro coaches</span></div>
       </div>
     </section>
 
-    <!-- مزایا -->
+    <!-- Features -->
     <section class="section container" id="features">
       <div class="section-head reveal">
-        <span class="eyebrow">چرا سورنا جیم؟</span>
-        <h2>هر چه برای رسیدن به هدفت لازم داری</h2>
-        <p>از طراحی برنامه تا پیگیری پیشرفت، در تمام مسیر کنارت هستیم.</p>
+        <span class="eyebrow">Why BLOGYM?</span>
+        <h2>Everything you need to reach your goal</h2>
+        <p>From planning to tracking progress, we're with you the whole way.</p>
       </div>
       <div class="grid g4">
         <article class="glass feature reveal">
           <span class="f-ico">📋</span>
-          <h3>برنامه اختصاصی</h3>
-          <p>بر پایه سطح، هدف و امکانات تو طراحی می‌شود؛ نه یک نسخه برای همه.</p>
+          <h3>Personal plans</h3>
+          <p>Built around your level, goal and equipment — not one size fits all.</p>
         </article>
         <article class="glass feature reveal">
           <span class="f-ico">🎬</span>
-          <h3>آموزش تصویری</h3>
-          <p>اجرای صحیح هر حرکت، قدم‌به‌قدم و همراه با نکات پیشگیری از آسیب.</p>
+          <h3>Illustrated guides</h3>
+          <p>Proper form for every move, step by step, with tips to prevent injury.</p>
         </article>
         <article class="glass feature reveal">
           <span class="f-ico">💬</span>
-          <h3>پشتیبانی مربی</h3>
-          <p>سؤالت را مستقیم از مربی بپرس و بازخورد حرفه‌ای بگیر.</p>
+          <h3>Coach support</h3>
+          <p>Ask your coach directly and get professional feedback.</p>
         </article>
         <article class="glass feature reveal">
           <span class="f-ico">📈</span>
-          <h3>پیگیری پیشرفت</h3>
-          <p>وزنه‌ها و اندازه‌هایت را ثبت کن و رشدت را روی نمودار ببین.</p>
+          <h3>Progress tracking</h3>
+          <p>Log your lifts and measurements and watch your growth on a chart.</p>
         </article>
       </div>
     </section>
 
-    <!-- برنامه‌ها -->
+    <!-- Programs -->
     <section class="section container" id="programs">
       <div class="section-head reveal">
-        <span class="eyebrow">فروشگاه برنامه</span>
-        <h2>برنامه‌های تمرینی</h2>
-        <p>برنامه‌ی مناسب هدفت را انتخاب کن و همین امروز شروع کن.</p>
+        <span class="eyebrow">Programs</span>
+        <h2>Training programs</h2>
+        <p>Pick the program that fits your goal and get started today.</p>
       </div>
       <div class="chips reveal" id="programChips">
-        <button class="chip active" data-cat="all">همه</button>
-        <button class="chip" data-cat="mass">حجم</button>
-        <button class="chip" data-cat="cut">چربی‌سوزی</button>
-        <button class="chip" data-cat="strength">قدرتی</button>
-        <button class="chip" data-cat="beginner">مبتدی</button>
-        <button class="chip" data-cat="home">تمرین در خانه</button>
+        <button class="chip active" data-cat="all">All</button>
+        <button class="chip" data-cat="mass">Muscle gain</button>
+        <button class="chip" data-cat="cut">Fat loss</button>
+        <button class="chip" data-cat="strength">Strength</button>
+        <button class="chip" data-cat="beginner">Beginner</button>
+        <button class="chip" data-cat="home">Home workouts</button>
       </div>
       <div class="grid g3 snap" id="programGrid"></div>
     </section>
 
-  <section class="section container" id="exercises">
+    <!-- Exercises -->
+    <section class="section container" id="exercises">
       <div class="section-head reveal">
-        <span class="eyebrow">کتابخانه حرکات</span>
-        <h2>آموزش حرکات بدنسازی</h2>
-        <p>چند حرکت پرکاربرد را ببین یا در کل کتابخانه جستجو کن.</p>
+        <span class="eyebrow">Exercise library</span>
+        <h2>Exercise guides</h2>
+        <p>See a few popular moves or search the whole library.</p>
       </div>
- 
+
       <button type="button" class="search search-fake glass reveal" id="exOpenSearch">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-        <span>جستجوی حرکت یا عضله...</span>
+        <span>Search an exercise or muscle...</span>
       </button>
- 
+
       <div class="grid g4" id="exGrid"></div>
- 
+
       <div class="ex-more reveal">
         <button type="button" class="btn btn-primary" id="exMore">
-          مشاهده همه حرکات
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          View all exercises
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
       </div>
     </section>
 
-    <!-- مربیان -->
+    <!-- Coaches -->
     <section class="section container" id="trainers">
       <div class="section-head reveal">
-        <span class="eyebrow">تیم ما</span>
-        <h2>مربیان حرفه‌ای</h2>
-        <p>تجربه و تخصص، همراه تو در مسیر تغییر.</p>
+        <span class="eyebrow">Our team</span>
+        <h2>Professional coaches</h2>
+        <p>Experience and expertise on your side of the change.</p>
       </div>
       <div class="grid g4" id="trainerGrid"></div>
     </section>
 
-    <!-- تعرفه -->
-    <section class="section container" id="pricing">
-      <div class="section-head reveal">
-        <span class="eyebrow">اشتراک‌ها</span>
-        <h2>اشتراک ویژه سورنا جیم</h2>
-        <p>دسترسی به همه‌ی برنامه‌ها، آموزش حرکات و پشتیبانی مربی.</p>
-      </div>
-      <div class="grid g3 pricing" id="planGrid"></div>
-    </section>
-
-    <!-- نظرات -->
+    <!-- Reviews -->
     <section class="section container" id="reviews">
       <div class="section-head reveal">
-        <span class="eyebrow">نظر شاگردان</span>
-        <h2>تجربه‌ی ورزشکاران ما</h2>
+        <span class="eyebrow">Member stories</span>
+        <h2>What our athletes say</h2>
       </div>
       <div class="grid g3 snap">
         <article class="glass review reveal">
           <div class="stars">★★★★★</div>
-          <p>«با برنامه حجمی ۱۲ هفته‌ای، شش کیلو عضله اضافه کردم. توضیح حرکات هم خیلی کامل بود.»</p>
-          <div class="who"><span class="av">ر</span><div><b>رضا احمدی</b><small>تهران</small></div></div>
+          <p>“With the 12-week mass program I added six kilos of muscle. The exercise guides were really thorough.”</p>
+          <div class="who"><span class="av">R</span><div><b>Reza Ahmadi</b><small>Tehran</small></div></div>
         </article>
         <article class="glass review reveal">
           <div class="stars">★★★★★</div>
-          <p>«به‌عنوان یک خانمِ مبتدی، برنامه‌ها ساده و قابل اجرا بود و مربی همیشه پاسخ می‌داد.»</p>
-          <div class="who"><span class="av">س</span><div><b>سارا موسوی</b><small>اصفهان</small></div></div>
+          <p>“As a beginner, the programs were simple and doable, and my coach always replied.”</p>
+          <div class="who"><span class="av">S</span><div><b>Sara Mousavi</b><small>Isfahan</small></div></div>
         </article>
         <article class="glass review reveal">
           <div class="stars">★★★★☆</div>
-          <p>«برنامه چربی‌سوزی بدون نیاز به باشگاه؛ توی خانه هشت کیلو کم کردم. پیشنهاد می‌کنم.»</p>
-          <div class="who"><span class="av">م</span><div><b>محسن کریمی</b><small>شیراز</small></div></div>
+          <p>“A fat-loss plan that needs no gym — I lost eight kilos at home. Highly recommend.”</p>
+          <div class="who"><span class="av">M</span><div><b>Mohsen Karimi</b><small>Shiraz</small></div></div>
         </article>
       </div>
     </section>
 
-    <!-- سوالات -->
+    <!-- FAQ -->
     <section class="section container narrow" id="faq">
       <div class="section-head reveal">
-        <span class="eyebrow">پرسش‌های متداول</span>
-        <h2>پاسخ سؤال‌های شما</h2>
+        <span class="eyebrow">FAQ</span>
+        <h2>Your questions, answered</h2>
       </div>
       <div class="faq">
         <details class="glass reveal" open>
-          <summary>بعد از خرید، برنامه را چگونه دریافت می‌کنم؟</summary>
-          <p>بلافاصله پس از پرداخت، برنامه در پنل کاربری شما فعال می‌شود و می‌توانید فایل PDF آن را دانلود کنید.</p>
+          <summary>Are the programs suitable for beginners?</summary>
+          <p>Yes. Every program has a clear level, and we have dedicated beginner programs with full guidance.</p>
         </details>
         <details class="glass reveal">
-          <summary>برنامه‌ها برای مبتدی‌ها هم مناسب است؟</summary>
-          <p>بله. هر برنامه سطح مشخصی دارد و برای مبتدی‌ها برنامه‌های ویژه‌ای همراه با آموزش کامل داریم.</p>
+          <summary>Do I need a gym membership?</summary>
+          <p>No. There are home programs that only need your body weight and a resistance band.</p>
         </details>
         <details class="glass reveal">
-          <summary>اگر سؤالی داشتم از کجا بپرسم؟</summary>
-          <p>از بخش پیام‌ها در پنل کاربری، مستقیم با مربی در ارتباط خواهید بود.</p>
+          <summary>Where can I ask a question?</summary>
+          <p>Message your coach directly and you'll get a professional answer.</p>
         </details>
         <details class="glass reveal">
-          <summary>امکان بازگشت وجه وجود دارد؟</summary>
-          <p>تا ۷ روز پس از خرید، در صورت نارضایتی وجه شما بازگردانده می‌شود.</p>
+          <summary>How are the exercise guides organized?</summary>
+          <p>Every exercise is grouped by muscle and level, with a short description, suggested sets and reps, and step-by-step instructions.</p>
         </details>
       </div>
     </section>
@@ -308,112 +286,95 @@
     <section class="container section">
       <div class="glass cta reveal">
         <div>
-          <h2>آماده‌ای شروع کنی؟</h2>
-          <p>ایمیلت را بنویس تا یک نمونه برنامه رایگان برایت بفرستیم.</p>
+          <h2>Ready to start?</h2>
+          <p>Drop your email and get weekly training tips in your inbox.</p>
         </div>
         <form class="cta-form" id="newsletter">
-          <input type="email" placeholder="ایمیل شما" required>
-          <button class="btn btn-primary" type="submit">دریافت برنامه رایگان</button>
+          <input type="email" placeholder="Your email" required>
+          <button class="btn btn-primary" type="submit">Subscribe</button>
         </form>
       </div>
     </section>
   </main>
 
-  <!-- فوتر -->
+  <!-- Footer -->
   <footer class="footer container">
     <div class="glass footer-wrap">
       <div class="f-col">
         <a href="#home" class="logo"><span class="logo-mark">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg>
-        </span><span class="logo-txt"><b>سورنا<i> جیم</i></b><small>sorenagym</small></span></a>
-        <p class="muted">پلتفرم فروش برنامه تمرینی و آموزش حرکات بدنسازی.</p>
+        </span><span class="logo-txt"><b>BLO<i>GYM</i></b><small>blogym</small></span></a>
+        <p class="muted">Workout programs and exercise guides in one place.</p>
       </div>
       <div class="f-col">
-        <h4>دسترسی سریع</h4>
-        <a href="#programs">برنامه‌ها</a>
-        <a href="#exercises">آموزش حرکات</a>
-        <a href="#pricing">اشتراک‌ها</a>
+        <h4>Quick links</h4>
+        <a href="#programs">Programs</a>
+        <a href="#exercises">Exercises</a>
+        <a href="#trainers">Coaches</a>
       </div>
       <div class="f-col">
-        <h4>پشتیبانی</h4>
-        <a href="#faq">پرسش‌های متداول</a>
-        <a href="#">قوانین و مقررات</a>
-        <a href="#">تماس با ما</a>
+        <h4>Support</h4>
+        <a href="#faq">FAQ</a>
+        <a href="#">Terms &amp; conditions</a>
+        <a href="#">Contact us</a>
       </div>
       <div class="f-col">
-        <h4>ارتباط با ما</h4>
-        <span class="muted">@sorenagym</span>
-        <span class="muted">۰۲۱-۱۲۳۴۵۶۷۸</span>
+        <h4>Contact</h4>
+        <span class="muted">@blogym</span>
+        <span class="muted">hello@blogym.com</span>
       </div>
     </div>
-    <p class="copy muted">© ۱۴۰۵ سورنا جیم (sorenagym). تمامی حقوق محفوظ است.</p>
+    <p class="copy muted">© 2026 BLOGYM. All rights reserved.</p>
   </footer>
 
-  <!-- سبد خرید -->
-  <div class="overlay" id="overlay"></div>
-  <aside class="drawer glass" id="drawer" aria-hidden="true">
-    <div class="drawer-head">
-      <h3>سبد خرید</h3>
-      <button class="icon-btn" id="closeCart" aria-label="بستن">✕</button>
-    </div>
-    <div class="drawer-body" id="cartItems"></div>
-    <div class="drawer-foot">
-      <div class="total"><span>جمع کل</span><b id="cartTotal">۰ تومان</b></div>
-      <button class="btn btn-primary w100" id="checkoutBtn">ادامه و پرداخت</button>
-    </div>
-  </aside>
-
-  <!-- مودال -->
+  <!-- Modal -->
   <div class="modal" id="modal" aria-hidden="true">
     <div class="modal-box glass">
-      <button class="icon-btn modal-close" id="closeModal" aria-label="بستن">✕</button>
+      <button class="icon-btn modal-close" id="closeModal" aria-label="Close">✕</button>
       <div id="modalContent"></div>
     </div>
   </div>
-  <!-- =====================================================
-  قدم ۲: این بلوک را درست قبل از خط زیر بگذار
-  <div class="toast" id="toast"></div>
-===================================================== -->
- 
-  <!-- صفحه تمام‌صفحه حرکات -->
+
+  <!-- Fullscreen exercise library -->
   <div class="exp" id="exPage" aria-hidden="true">
     <div class="exp-bg"></div>
     <div class="exp-wrap">
- 
+
       <div class="exp-top">
         <button type="button" class="exp-back" id="exBack">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          بازگشت
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          Back
         </button>
         <span class="exp-count" id="exCount"></span>
       </div>
- 
+
       <div class="exp-hero">
-        <span class="eyebrow">کتابخانه حرکات</span>
-        <h2>حرکتت را پیدا کن</h2>
-        <p>بر اساس نام حرکت یا عضله جستجو کن و روش اجرای درست را ببین.</p>
+        <span class="eyebrow">Exercise library</span>
+        <h2>Find your move</h2>
+        <p>Search by exercise or muscle and see how to perform it properly.</p>
       </div>
- 
+
       <label class="exp-search">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="search" id="exSearch" placeholder="مثلاً: اسکوات، سینه، بارفیکس..." autocomplete="off">
-        <button type="button" class="exp-clear" id="exClear" aria-label="پاک کردن">✕</button>
+        <input type="search" id="exSearch" placeholder="e.g. Squat, Chest, Pull-up..." autocomplete="off">
+        <button type="button" class="exp-clear" id="exClear" aria-label="Clear">✕</button>
       </label>
- 
+
       <div class="exp-chips" id="exChips">
-        <button class="chip xchip active" data-m="all"><i>✨</i>همه<em></em></button>
-        <button class="chip xchip" data-m="chest"><i>🏋️</i>سینه<em></em></button>
-        <button class="chip xchip" data-m="back"><i>🧗</i>پشت<em></em></button>
-        <button class="chip xchip" data-m="legs"><i>🦵</i>پا<em></em></button>
-        <button class="chip xchip" data-m="shoulder"><i>🔝</i>سرشانه<em></em></button>
-        <button class="chip xchip" data-m="arms"><i>💪</i>بازو<em></em></button>
-        <button class="chip xchip" data-m="core"><i>🧘</i>شکم<em></em></button>
+        <button class="chip xchip active" data-m="all"><i>✨</i>All<em></em></button>
+        <button class="chip xchip" data-m="chest"><i>🏋️</i>Chest<em></em></button>
+        <button class="chip xchip" data-m="back"><i>🧗</i>Back<em></em></button>
+        <button class="chip xchip" data-m="legs"><i>🦵</i>Legs<em></em></button>
+        <button class="chip xchip" data-m="shoulder"><i>🔝</i>Shoulders<em></em></button>
+        <button class="chip xchip" data-m="arms"><i>💪</i>Arms<em></em></button>
+        <button class="chip xchip" data-m="core"><i>🧘</i>Core<em></em></button>
       </div>
- 
+
       <div class="exp-grid" id="exFullGrid"></div>
-      <p class="exp-empty hidden" id="exEmpty">حرکتی با این مشخصات پیدا نشد 🤷‍♂️</p>
+      <p class="exp-empty hidden" id="exEmpty">No exercises match your search 🤷‍♂️</p>
     </div>
   </div>
+
   <div class="toast" id="toast"></div>
 
   <script src="./script/script.js"></script>
