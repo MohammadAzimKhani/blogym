@@ -13,7 +13,6 @@ const programs = [
   { id: 'p8', title: 'Home Strength & Mobility', cat: 'home', level: 'Intermediate', weeks: 6, days: 4, icon: '🤸', desc: 'Calisthenics for strength, flexibility and body control.' },
   { id: 'p9', title: 'Intro to Powerlifting', cat: 'strength', level: 'Intermediate', weeks: 8, days: 4, icon: '🦾', desc: 'Get meet-ready with a focus on squat, bench and deadlift.' }
 ];
-
 const exercises = [
   { name: 'Dumbbell Bench Press', m: 'chest', mName: 'Chest', level: 'Intermediate', sets: '4×10', icon: '🏋️', desc: 'A foundational move for building the chest and triceps.', steps: ['Lie on a flat bench and hold the dumbbells beside your chest.', 'Press the dumbbells up as you exhale.', 'Lower them back under control as you inhale.'] },
   { name: 'Incline Press', m: 'chest', mName: 'Chest', level: 'Intermediate', sets: '3×12', icon: '📐', desc: 'Targets the upper part of the chest.', steps: ['Set the bench to a 30–45° angle.', 'Lower the bar to the middle of your chest.', 'Press it back up with power.'] },
